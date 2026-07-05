@@ -39,3 +39,10 @@ frontend_react/dist/
 *.njsproj
 *.sln
 *.sw?
+
+# Database runtime files
+data/01KWS6W4R07DPRPGD2WM001R9K/
+data/chunks_head/
+data/wal/
+data/lock
+data/queries.active

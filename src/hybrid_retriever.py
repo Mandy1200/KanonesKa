@@ -2,13 +2,22 @@ import os
 import json
 import faiss
 import numpy as np
-from sentence_transformers import SentenceTransformer, CrossEncoder
+import torch
+import torch.nn.functional as F
+from transformers import AutoTokenizer, AutoModel, AutoModelForSequenceClassification
 from rank_bm25 import BM25Okapi
 
+# Set hardware acceleration device
+device = torch.device(
+    "cuda" if torch.cuda.is_available() 
+    else "mps" if torch.backends.mps.is_available() 
+    else "cpu"
+)
+
 class HybridRetriever:
-    def __init__(self, index_path: str, chunk_json_path: str, embedding_model_name: str = 'all-MiniLM-L6-v2', reranker_model_name: str = 'cross-encoder/ms-marco-MiniLM-L-6-v2'):
+    def __init__(self, index_path: str, chunk_json_path: str, embedding_model_name: str = 'sentence-transformers/all-MiniLM-L6-v2', reranker_model_name: str = 'cross-encoder/ms-marco-MiniLM-L-6-v2'):
         """
-        Initializes the Hybrid (FAISS + BM25) Retriever with a Cross-Encoder Reranker.
+        Initializes the Hybrid (FAISS + BM25) Retriever using raw PyTorch inference on GPU/MPS/CPU.
         """
         # 1. Load Chunks
         if not os.path.exists(chunk_json_path):
@@ -21,23 +30,39 @@ class HybridRetriever:
             raise FileNotFoundError(f"FAISS index not found: {index_path}")
         self.index = faiss.read_index(index_path)
         
-        # 3. Load Embedding Model
-        self.embedding_model = SentenceTransformer(embedding_model_name)
+        # 3. Load Embedding Model & Tokenizer on Device Accelerator
+        self.embed_tokenizer = AutoTokenizer.from_pretrained(embedding_model_name)
+        self.embed_model = AutoModel.from_pretrained(embedding_model_name).to(device)
+        self.embed_model.eval()
         
         # 4. Initialize BM25 Sparse Index
-        # Simple tokenization by splitting words and converting to lowercase
         self.tokenized_corpus = [chunk["text"].lower().split() for chunk in self.chunks]
         self.bm25 = BM25Okapi(self.tokenized_corpus)
         
-        # 5. Load Cross-Encoder Reranker
-        print(f"Loading Cross-Encoder Reranker: {reranker_model_name}...")
-        self.reranker = CrossEncoder(reranker_model_name)
+        # 5. Load Cross-Encoder Reranker Model & Tokenizer on Device Accelerator
+        print(f"Loading PyTorch Cross-Encoder Reranker on {device}: {reranker_model_name}...")
+        self.rerank_tokenizer = AutoTokenizer.from_pretrained(reranker_model_name)
+        self.rerank_model = AutoModelForSequenceClassification.from_pretrained(reranker_model_name).to(device)
+        self.rerank_model.eval()
         print("Retriever initialization complete.")
 
     def dense_search(self, query: str, top_k: int = 10):
-        """Perform semantic search using FAISS."""
-        query_vector = self.embedding_model.encode([query])
-        faiss.normalize_L2(query_vector)
+        """Perform semantic search using FAISS and raw PyTorch embeddings."""
+        # Tokenize and execute forward pass on device
+        encoded_input = self.embed_tokenizer([query], padding=True, truncation=True, return_tensors='pt').to(device)
+        with torch.no_grad():
+            model_output = self.embed_model(**encoded_input)
+            
+        # Mean Pooling to get sentence embeddings
+        token_embeddings = model_output[0]
+        attention_mask = encoded_input['attention_mask']
+        input_mask_expanded = attention_mask.unsqueeze(-1).expand(token_embeddings.size()).float()
+        sentence_embeddings = torch.sum(token_embeddings * input_mask_expanded, 1) / torch.clamp(input_mask_expanded.sum(1), min=1e-9)
+        
+        # L2 Normalize for cosine similarity matching
+        query_vector = F.normalize(sentence_embeddings, p=2, dim=1).cpu().numpy()
+        
+        # FAISS search
         distances, indices = self.index.search(np.array(query_vector, dtype=np.float32), top_k)
         
         results = []
@@ -59,7 +84,7 @@ class HybridRetriever:
         results = []
         for rank, idx in enumerate(top_indices):
             score = scores[idx]
-            if score > 0:  # Only count documents with some matching terms
+            if score > 0:
                 results.append({
                     "chunk": self.chunks[idx],
                     "sparse_score": float(score),
@@ -69,16 +94,16 @@ class HybridRetriever:
 
     def query(self, query_str: str, retrieve_k: int = 10, final_k: int = 3, rrf_constant: int = 60) -> list:
         """
-        Runs Hybrid Retrieval + RRF + Cross-Encoder Reranking.
+        Runs Hybrid Retrieval + RRF + Cross-Encoder Reranking using raw PyTorch.
         """
         # Step A: Run Dense and Sparse Searches
         dense_results = self.dense_search(query_str, top_k=retrieve_k)
         sparse_results = self.sparse_search(query_str, top_k=retrieve_k)
         
         # Step B: Reciprocal Rank Fusion (RRF)
-        rrf_scores = {}  # chunk_id -> score
-        chunk_map = {}   # chunk_id -> chunk
-        retrieval_metadata = {} # chunk_id -> source details
+        rrf_scores = {}
+        chunk_map = {}
+        retrieval_metadata = {}
         
         for item in dense_results:
             cid = item["chunk"]["chunk_id"]
@@ -101,11 +126,21 @@ class HybridRetriever:
         if not sorted_candidates:
             return []
             
-        # Step C: Reranking with Cross-Encoder
+        # Step C: Reranking with PyTorch Cross-Encoder
         candidate_chunks = [chunk_map[cid] for cid, _ in sorted_candidates]
         pairs = [[query_str, chunk["text"]] for chunk in candidate_chunks]
         
-        rerank_scores = self.reranker.predict(pairs)
+        # Tokenize and run cross-encoder prediction on accelerator device
+        features = self.rerank_tokenizer(pairs, padding=True, truncation=True, return_tensors="pt").to(device)
+        with torch.no_grad():
+            model_output = self.rerank_model(**features)
+            
+        # Extract classification logits (squeezed to 1D)
+        rerank_scores = model_output.logits.squeeze(-1).cpu().numpy()
+        
+        # If there's only one candidate, make sure rerank_scores is iterable
+        if len(candidate_chunks) == 1:
+            rerank_scores = [float(rerank_scores)]
         
         # Build list with all metadata
         reranked_results = []
@@ -125,7 +160,6 @@ class HybridRetriever:
         # Sort by rerank score descending
         reranked_results = sorted(reranked_results, key=lambda x: x["rerank_score"], reverse=True)
         
-        # Return top final_k
         return reranked_results[:final_k]
 
 if __name__ == "__main__":
