@@ -1,0 +1,402 @@
+[
+    {
+        "id": 1,
+        "country": "Canada",
+        "category": "customs_duty_free_limits",
+        "context": "[Canada - Customs & Duty-Free Limits]: Duty-free allowance includes 200 cigarettes, 50 cigars, 1.5 liters of wine, or 1.14 liters of spirits. Cash limit: travelers carrying CAD 10,000 or more (or equivalent) must declare it to the Canada Border Services Agency (CBSA) on arrival. Fresh fruits, vegetables, and meats must be declared.",
+        "query": "I'm traveling to Canada from India, what's the duty-free limit on wine I can bring?",
+        "ground_truth": "You can bring 1.5 liters of wine duty-free."
+    },
+    {
+        "id": 2,
+        "country": "Norway",
+        "category": "customs_duty_free_limits",
+        "context": "[Norway - Customs & Duty-Free Limits]: Up to 200 cigarettes, 1 liter of spirits and 1.5 liters of wine. Declare cash over NOK 25,000.",
+        "query": "What's the limit on wine I can bring to Norway duty-free?",
+        "ground_truth": "1.5 liters of wine"
+    },
+    {
+        "id": 3,
+        "country": "France",
+        "category": "primary_ride_hailing_apps",
+        "context": "[France - Local Transportation]: Uber, Bolt, Heetch, G7 Taxi",
+        "query": "What are some popular taxi apps in France?",
+        "ground_truth": "Uber, Bolt, Heetch, and G7 Taxi are popular taxi apps in France."
+    },
+    {
+        "id": 4,
+        "country": "Brazil",
+        "category": "customs_duty_free_limits",
+        "context": "[Brazil - Customs & Duty-Free Limits]: Up to 400 cigarettes, 12 liters of alcohol. Cash over BRL 10,000 or equivalent must be declared at customs on arrival.",
+        "query": "How many cigarettes can I carry duty-free to Brazil?",
+        "ground_truth": "Up to 400 cigarettes"
+    },
+    {
+        "id": 5,
+        "country": "Georgia",
+        "category": "alcohol_availability_laws",
+        "context": "[Georgia - Food & Alcohol Regulations]: Very liberal. Wine is a national heritage; public consumption generally accepted.",
+        "query": "Can I drink wine in public places in Georgia?",
+        "ground_truth": "Yes, public consumption of wine is generally accepted in Georgia."
+    },
+    {
+        "id": 6,
+        "country": "Mexico",
+        "category": "scam_alerts_common",
+        "context": "[Mexico - Emergency & Safety]: Fake ATM fronts (skimming), corrupt transit police demanding cash bribes, overcharging taxis.",
+        "query": "What are some common scams to watch out for in Mexico?",
+        "ground_truth": "Be cautious of fake ATM fronts (skimming), corrupt transit police demanding cash bribes, and overcharging taxis."
+    },
+    {
+        "id": 7,
+        "country": "Azerbaijan (Baku)",
+        "category": "tipping_culture_rules",
+        "context": "[Azerbaijan (Baku) - Tipping & Shopping]: 10% service charge is usually included; leaving 5-10% extra is appreciated.",
+        "query": "What is the usual practice for tipping in Baku, Azerbaijan?",
+        "ground_truth": "A 10% service charge is usually included, and leaving 5-10% extra is appreciated."
+    },
+    {
+        "id": 8,
+        "country": "Canada",
+        "category": "tipping_culture_rules",
+        "context": "[Canada - Tipping & Shopping]: Standard tipping is 15-20% on pre-tax bills.",
+        "query": "What is the standard tipping percentage in Canada?",
+        "ground_truth": "Standard tipping is 15-20% on pre-tax bills."
+    },
+    {
+        "id": 9,
+        "country": "Seychelles",
+        "category": "visa_requirements",
+        "context": "[Seychelles - Visa Requirements]: Indian passport holders do not require a visa. A free Visitor's Permit is issued on arrival for stays up to 30 days. Requirements: return ticket, confirmed stay, and travel authorization.",
+        "query": "Do I need a visa to visit Seychelles with my Indian passport?",
+        "ground_truth": "No, a free Visitor's Permit is issued on arrival for stays up to 30 days, provided you have a return ticket, confirmed stay, and travel authorization."
+    },
+    {
+        "id": 10,
+        "country": "Mexico",
+        "category": "scam_alerts_common",
+        "context": "[Mexico - Emergency & Safety]: Fake ATM fronts (skimming), corrupt transit police demanding cash bribes, overcharging taxis.",
+        "query": "What are some common scams I should be aware of while traveling to Mexico?",
+        "ground_truth": "Be cautious of fake ATM fronts (skimming) and corrupt transit police demanding cash bribes, as well as overcharging taxis."
+    },
+    {
+        "id": 11,
+        "country": "South Africa",
+        "category": "alcohol_availability_laws",
+        "context": "[South Africa - Food & Alcohol Regulations]: Legal for 18+. Store sales restricted on Sundays and public holidays.",
+        "query": "Can I buy liquor on a Sunday in South Africa?",
+        "ground_truth": "Store sales of liquor are restricted on Sundays and public holidays in South Africa."
+    },
+    {
+        "id": 12,
+        "country": "Oman",
+        "category": "vaping_e_cigarette_legality",
+        "context": "[Oman - Cultural Taboos & Laws]: Banned/Confiscated",
+        "query": "Can I bring gold to Oman as a tourist?",
+        "ground_truth": "Gold is banned or confiscated in Oman."
+    },
+    {
+        "id": 13,
+        "country": "Georgia",
+        "category": "customs_duty_free_limits",
+        "context": "[Georgia - Customs & Duty-Free Limits]: Up to 200 cigarettes, 3 liters of wine or 4 liters of beer. Strict ban on carrying medicines containing codeine or pseudoephedrine without prescription translation.",
+        "query": "How many cigarettes can I bring to Georgia duty-free?",
+        "ground_truth": "Up to 200 cigarettes"
+    },
+    {
+        "id": 14,
+        "country": "Greece",
+        "category": "visa_requirements",
+        "context": "[Greece - Visa Requirements]: Indian citizens require a Schengen Visa to visit Greece. Applications must be submitted through GVCW (Greece Visa Center World).",
+        "query": "Do I need a visa to visit Greece from India?",
+        "ground_truth": "Yes, Indian citizens require a Schengen Visa to visit Greece."
+    },
+    {
+        "id": 15,
+        "country": "Nepal",
+        "category": "alcohol_availability_laws",
+        "context": "[Nepal - Food & Alcohol Regulations]: Legally restricted to licensed shops and bars; alcohol sale banned on election days.",
+        "query": "Can I buy alcohol in Nepal freely?",
+        "ground_truth": "No, alcohol can only be bought in licensed shops and bars."
+    },
+    {
+        "id": 16,
+        "country": "France",
+        "category": "customs_duty_free_limits",
+        "context": "[France - Customs & Duty-Free Limits]: Duty-free allowance includes 200 cigarettes, 1 liter of spirits, and goods up to EUR 430 in value. Cash limit: cash or assets of EUR 10,000 or more must be declared to customs. Possession of counterfeit luxury goods is a serious offense in France and can result in severe fines.",
+        "query": "What's the cash limit I need to declare to customs in France?",
+        "ground_truth": "You must declare cash or assets of EUR 10,000 or more to customs in France."
+    },
+    {
+        "id": 17,
+        "country": "South Korea",
+        "category": "primary_ride_hailing_apps",
+        "context": "[South Korea - Local Transportation]: Kakao T, Uber (UT)",
+        "query": "What's the best way to get around in South Korea?",
+        "ground_truth": "You can use Kakao T or Uber (UT) for local transportation in South Korea."
+    },
+    {
+        "id": 18,
+        "country": "Austria",
+        "category": "customs_duty_free_limits",
+        "context": "[Austria - Customs & Duty-Free Limits]: Up to 200 cigarettes, 1 liter of spirits. Declaring cash of EUR 10,000 or more is required upon entry.",
+        "query": "How many cigarettes can I carry duty-free to Austria?",
+        "ground_truth": "Up to 200 cigarettes"
+    },
+    {
+        "id": 19,
+        "country": "South Korea",
+        "category": "scam_alerts_common",
+        "context": "[South Korea - Emergency & Safety]: Taut scams in bars in Itaewon, taxi drivers overcharging late-night passengers.",
+        "query": "What are some common scams to watch out for in South Korea's nightlife?",
+        "ground_truth": "In South Korea, particularly in areas like Itaewon, there have been reports of taut scams in bars and taxi drivers overcharging late-night passengers."
+    },
+    {
+        "id": 20,
+        "country": "Russia",
+        "category": "tipping_culture_rules",
+        "context": "[Russia - Tipping & Shopping]: 10% is standard in restaurants and bars (tip in cash directly to waiter).",
+        "query": "What is the standard tip amount in Russia?",
+        "ground_truth": "10% is standard in restaurants and bars, tip in cash directly to the waiter."
+    },
+    {
+        "id": 21,
+        "country": "Thailand",
+        "category": "customs_duty_free_limits",
+        "context": "[Thailand - Customs & Duty-Free Limits]: Duty-free allowance includes up to 200 cigarettes or 250g of tobacco, and 1 liter of alcohol. Cash limit: must possess at least 10,000 THB per person or 20,000 THB per family in cash to clear immigration. Strictly prohibited: e-cigarettes, vapes, and shisha. Carrying electronic cigarettes or vapes into Thailand is illegal and can lead to heavy fines or imprisonment.",
+        "query": "What's the cash limit I need to carry to clear immigration in Thailand?",
+        "ground_truth": "You must possess at least 10,000 THB per person or 20,000 THB per family in cash to clear immigration."
+    },
+    {
+        "id": 22,
+        "country": "Sri Lanka",
+        "category": "alcohol_availability_laws",
+        "context": "[Sri Lanka - Food & Alcohol Regulations]: Widely available, except on Poya days when selling alcohol is illegal nationwide.",
+        "query": "Can I buy alcohol in Sri Lanka on a normal day?",
+        "ground_truth": "Yes, alcohol is widely available in Sri Lanka on normal days."
+    },
+    {
+        "id": 23,
+        "country": "Maldives",
+        "category": "primary_ride_hailing_apps",
+        "context": "[Maldives - Local Transportation]: Avas Ride (Male)",
+        "query": "What's the popular ride-hailing service in Male, Maldives?",
+        "ground_truth": "Avas Ride is the popular ride-hailing service in Male, Maldives."
+    },
+    {
+        "id": 24,
+        "country": "Mauritius",
+        "category": "customs_duty_free_limits",
+        "context": "[Mauritius - Customs & Duty-Free Limits]: Up to 200 cigarettes or 250g of tobacco, and 1 liter of spirits. Declare currency over USD 10,000.",
+        "query": "What's the duty-free limit for tobacco products in Mauritius?",
+        "ground_truth": "Up to 250g of tobacco."
+    },
+    {
+        "id": 25,
+        "country": "Japan",
+        "category": "customs_duty_free_limits",
+        "context": "[Japan - Customs & Duty-Free Limits]: Duty-free allowance includes up to 200 cigarettes (or 50 cigars), 3 bottles of alcohol (approx. 760ml per bottle), and up to 2 ounces of perfume. Cash/gold limit: carrying cash or gold exceeding 1 million JPY in value must be declared. Strictly prohibited: illegal drugs, firearms, counterfeit goods, and meat products (such as beef, pork, or poultry items).",
+        "query": "What's the limit on carrying cash or gold to Japan?",
+        "ground_truth": "Carrying cash or gold exceeding 1 million JPY in value must be declared."
+    },
+    {
+        "id": 26,
+        "country": "Maldives",
+        "category": "scam_alerts_common",
+        "context": "[Maldives - Emergency & Safety]: Overpriced speedboats in local islands, fake pearl sales.",
+        "query": "What are some common scams to watch out for in the Maldives?",
+        "ground_truth": "Be cautious of overpriced speedboats in local islands and fake pearl sales."
+    },
+    {
+        "id": 27,
+        "country": "Maldives",
+        "category": "alcohol_availability_laws",
+        "context": "[Maldives - Food & Alcohol Regulations]: Strictly illegal on local islands. Allowed only in tourist resorts and safari boats.",
+        "query": "Can I drink alcohol on a local island in Maldives?",
+        "ground_truth": "No, strictly illegal on local islands."
+    },
+    {
+        "id": 28,
+        "country": "Kazakhstan (Almaty)",
+        "category": "scam_alerts_common",
+        "context": "[Kazakhstan (Almaty) - Emergency & Safety]: Private taxi scams at Almaty Airport (always use Yandex Go app), inflated fees for pictures with animals in parks.",
+        "query": "What's the best taxi app to use at Almaty Airport in Kazakhstan?",
+        "ground_truth": "Use the Yandex Go app for private taxis at Almaty Airport."
+    },
+    {
+        "id": 29,
+        "country": "Kazakhstan (Almaty)",
+        "category": "alcohol_availability_laws",
+        "context": "[Kazakhstan (Almaty) - Food & Alcohol Regulations]: Legal for 21+. Alcohol sales banned in stores after 11 PM.",
+        "query": "What time do stores stop selling alcohol in Almaty, Kazakhstan?",
+        "ground_truth": "Stores stop selling alcohol in Almaty, Kazakhstan after 11 PM."
+    },
+    {
+        "id": 30,
+        "country": "Brazil",
+        "category": "tipping_culture_rules",
+        "context": "[Brazil - Tipping & Shopping]: Usually a 10% service charge is included in restaurant bills; extra tipping is optional.",
+        "query": "Do I need to tip extra in Brazil if the service charge is already included?",
+        "ground_truth": "Extra tipping is optional in Brazil if a 10% service charge is included in the restaurant bill."
+    },
+    {
+        "id": 31,
+        "country": "South Africa",
+        "category": "alcohol_availability_laws",
+        "context": "[South Africa - Food & Alcohol Regulations]: Legal for 18+. Store sales restricted on Sundays and public holidays.",
+        "query": "Can I buy alcohol on Sundays in South Africa?",
+        "ground_truth": "No, store sales are restricted on Sundays and public holidays in South Africa."
+    },
+    {
+        "id": 32,
+        "country": "Norway",
+        "category": "alcohol_availability_laws",
+        "context": "[Norway - Food & Alcohol Regulations]: Legal for 18+ (beer/wine), 20+ (spirits). Hard spirits sold only in state-run Vinmonopolet stores.",
+        "query": "I'm visiting Norway with my friends, can we buy and drink beer and wine if we're 18?",
+        "ground_truth": "Yes, you can buy and drink beer and wine in Norway if you're 18 or older."
+    },
+    {
+        "id": 33,
+        "country": "Bangladesh",
+        "category": "alcohol_availability_laws",
+        "context": "[Bangladesh - Food & Alcohol Regulations]: Highly restricted. Only sold in designated bars and 5-star hotel bars.",
+        "query": "Can I buy beer in a normal restaurant in Bangladesh?",
+        "ground_truth": "No, beer is only sold in designated bars and 5-star hotel bars in Bangladesh."
+    },
+    {
+        "id": 34,
+        "country": "Seychelles",
+        "category": "tipping_culture_rules",
+        "context": "[Seychelles - Tipping & Shopping]: Optional; most service charges (5-10%) are already added to hotel and restaurant bills.",
+        "query": "Do I need to tip extra in Seychelles?",
+        "ground_truth": "Optional; most service charges (5-10%) are already added to hotel and restaurant bills."
+    },
+    {
+        "id": 35,
+        "country": "Canada",
+        "category": "visa_requirements",
+        "context": "[Canada - Visa Requirements]: Indian citizens require a Temporary Resident Visa (visitor visa) to travel to Canada. It must be applied for and processed in advance online. The visa typically allows stays of up to 6 months per entry.",
+        "query": "Do I need a visa to visit Canada from India?",
+        "ground_truth": "Yes, Indian citizens require a Temporary Resident Visa (visitor visa) to travel to Canada."
+    },
+    {
+        "id": 36,
+        "country": "Saudi Arabia",
+        "category": "alcohol_availability_laws",
+        "context": "[Saudi Arabia - Food & Alcohol Regulations]: Strictly illegal. Zero tolerance for possession, consumption, or import of alcohol.",
+        "query": "Can I buy and consume alcohol in Saudi Arabia?",
+        "ground_truth": "Strictly illegal, with zero tolerance for possession, consumption, or import of alcohol."
+    },
+    {
+        "id": 37,
+        "country": "Japan",
+        "category": "vaping_e_cigarette_legality",
+        "context": "[Japan - Cultural Taboos & Laws]: Banned/Confiscated",
+        "query": "What items are banned or confiscated when entering Japan as an Indian tourist?",
+        "ground_truth": "In Japan, certain items are banned or confiscated, including but not limited to, knives, scissors, and items containing gold or silver exceeding a certain weight."
+    },
+    {
+        "id": 38,
+        "country": "Germany",
+        "category": "visa_requirements",
+        "context": "[Germany - Visa Requirements]: Indian citizens require a Schengen Visa to visit Germany. Applications must be submitted through VFS Global. The visa permits travel across the entire Schengen zone for up to 90 days within a 180-day period.",
+        "query": "Do I need a visa to visit Germany from India?",
+        "ground_truth": "Yes, Indian citizens require a Schengen Visa to visit Germany."
+    },
+    {
+        "id": 39,
+        "country": "Mexico",
+        "category": "tipping_culture_rules",
+        "context": "[Mexico - Tipping & Shopping]: Expected 10-15% in restaurants and bars. Smaller tips for parking and supermarket baggers.",
+        "query": "What is the usual tip amount in Mexico for restaurant services?",
+        "ground_truth": "10-15% is expected in restaurants and bars."
+    },
+    {
+        "id": 40,
+        "country": "Japan",
+        "category": "vaping_e_cigarette_legality",
+        "context": "[Japan - Cultural Taboos & Laws]: Banned/Confiscated",
+        "query": "What items are banned or confiscated when entering Japan?",
+        "ground_truth": "Gold, certain types of knives, and other prohibited items are banned or confiscated when entering Japan."
+    },
+    {
+        "id": 41,
+        "country": "Mexico",
+        "category": "visa_requirements",
+        "context": "[Mexico - Visa Requirements]: Indian citizens require a visa. However, they can visit visa-free for tourism up to 180 days if holding a valid, used visa or permanent residency from US, UK, Schengen, Canada, or Japan.",
+        "query": "Do I need a visa to visit Mexico if I have a used US visa?",
+        "ground_truth": "Yes, as an Indian citizen, you require a visa to visit Mexico, but having a used US visa allows you to visit visa-free for tourism up to 180 days."
+    },
+    {
+        "id": 42,
+        "country": "Italy",
+        "category": "visa_requirements",
+        "context": "[Italy - Visa Requirements]: Indian citizens require a Schengen Visa to visit Italy. Applications must be processed via VFS Global.",
+        "query": "Do I need a visa to visit Italy from India?",
+        "ground_truth": "Yes, Indian citizens require a Schengen Visa to visit Italy."
+    },
+    {
+        "id": 43,
+        "country": "Italy",
+        "category": "scam_alerts_common",
+        "context": "[Italy - Emergency & Safety]: Pickpocketing around Rome Colosseum/Termini, rose-giving scams, fake taxi meters.",
+        "query": "What are some common scams I should be aware of while visiting Rome?",
+        "ground_truth": "Be cautious of pickpocketing around the Rome Colosseum and Termini, as well as rose-giving scams and fake taxi meters."
+    },
+    {
+        "id": 44,
+        "country": "Canada",
+        "category": "visa_requirements",
+        "context": "[Canada - Visa Requirements]: Indian citizens require a Temporary Resident Visa (visitor visa) to travel to Canada. It must be applied for and processed in advance online. The visa typically allows stays of up to 6 months per entry.",
+        "query": "How long can I stay in Canada with a visitor visa?",
+        "ground_truth": "You can stay in Canada for up to 6 months per entry with a visitor visa."
+    },
+    {
+        "id": 45,
+        "country": "Australia",
+        "category": "primary_ride_hailing_apps",
+        "context": "[Australia - Local Transportation]: Uber, DiDi, Ola",
+        "query": "What are the popular ride-hailing apps in Australia?",
+        "ground_truth": "Uber, DiDi, and Ola are popular ride-hailing apps in Australia."
+    },
+    {
+        "id": 46,
+        "country": "Oman",
+        "category": "vaping_e_cigarette_legality",
+        "context": "[Oman - Cultural Taboos & Laws]: Banned/Confiscated",
+        "query": "What items are banned or confiscated when entering Oman?",
+        "ground_truth": "Gold, among other items, is banned or confiscated when entering Oman."
+    },
+    {
+        "id": 47,
+        "country": "Saudi Arabia",
+        "category": "customs_duty_free_limits",
+        "context": "[Saudi Arabia - Customs & Duty-Free Limits]: Alcohol, pork products, and narcotics are strictly prohibited and carry severe penalties. Passengers can bring personal items, up to 200 cigarettes, and cash/precious metals up to SAR 60,000 before declaration is required. Possession of any material contrary to Islamic teachings is banned.",
+        "query": "Can I bring gold as a gift to Saudi Arabia?",
+        "ground_truth": "Yes, you can bring gold as a precious metal, but it must be declared and the total value should not exceed SAR 60,000."
+    },
+    {
+        "id": 48,
+        "country": "Seychelles",
+        "category": "primary_ride_hailing_apps",
+        "context": "[Seychelles - Local Transportation]: Boug (Local island taxi service)",
+        "query": "What is the local taxi service in Seychelles?",
+        "ground_truth": "Boug is the local island taxi service in Seychelles."
+    },
+    {
+        "id": 49,
+        "country": "Philippines",
+        "category": "scam_alerts_common",
+        "context": "[Philippines - Emergency & Safety]: Overpriced tricycle rides, airport taxi luggage scams, fake tour guides in island ports.",
+        "query": "Are tricycle rides expensive in the Philippines?",
+        "ground_truth": "Yes, tricycle rides are overpriced in the Philippines."
+    },
+    {
+        "id": 50,
+        "country": "Australia",
+        "category": "alcohol_availability_laws",
+        "context": "[Australia - Food & Alcohol Regulations]: Legal for 18+. Open bottles are banned in public parks/streets in most cities.",
+        "query": "Can I bring open beer bottles to public places in Australia?",
+        "ground_truth": "No, open bottles are banned in public parks/streets in most cities in Australia."
+    }
+]

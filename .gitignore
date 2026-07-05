@@ -1,0 +1,41 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+.venv/
+venv/
+pip-log.txt
+pip-delete-this-directory.txt
+.tox/
+.coverage
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.log
+
+# Node / Frontend
+node_modules/
+frontend_react/node_modules/
+frontend_react/dist/
+.eslintcache
+.stylelintcache
+*.local
+
+# Environment variables (CRITICAL)
+.env
+.env.local
+.env.*.local
+
+# IDEs & System
+.DS_Store
+.idea/
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
