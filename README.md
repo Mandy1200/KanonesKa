@@ -1,134 +1,454 @@
-# KanonesKa: Outbound-India Travel Compliance RAG Assistant
+# 🌍 KanonesKa: Outbound-India Travel Compliance AI
 
-An advanced, hardware-accelerated **Hybrid Retrieval-Augmented Generation (Hybrid-RAG)** system and stateful planning wizard designed for Indian citizens traveling outbound.
+<p align="center">
 
-KanonesKa evaluates visa rules, gold limits, duty-free caps, local customs, and safety guidelines across 55 destinations, offering optimized multi-leg flight routing and secure cloud-synced travel histories.
+**Hybrid-RAG powered AI Travel Compliance & Intelligent Flight Planning Platform**
 
----
+Built using **FastAPI • React • LangGraph • FAISS • BM25 • PyTorch • Groq • Supabase**
 
-## 🚀 Key Features
-
-1.  **State-of-the-Art Hybrid RAG Search**:
-    *   **Dense Retrieval**: Uses raw PyTorch to compute text hidden states and mean pooling directly on hardware accelerators (`MPS`/`CUDA`). Search runs via a flat cosine similarity index (`faiss`).
-    *   **Sparse Retrieval**: BM25Okapi keyword index targeting exact regulatory queries (e.g., *"vape legality"* or *"50g gold"*).
-    *   **Rank Fusion**: Reciprocal Rank Fusion (RRF) merges dense and sparse results.
-    *   **Cross-Encoder Reranking**: Evaluates query/document relevance jointly using a `ms-marco-MiniLM` transformer.
-2.  **Stateful Multi-Step Planning Wizard**:
-    *   Walks travelers through Starting City ➔ Target Destination ➔ Profile Select (Solo Female, Family, Couple, Duo) ➔ Trip Duration Days.
-    *   Dynamically maps connecting flight legs from any of **India's top 100 cities** using **Dijkstra's shortest path** algorithm.
-3.  **Supabase Auth & Cloud Database Sync**:
-    *   Split-screen Auth page featuring animated travel route maps and clean Login/Register credential tabs.
-    *   Saves and synchronizes multi-leg travel itineraries to a Supabase PostgreSQL instance secured with Row-Level Security (RLS).
-4.  **Prometheus Metric Scraper**:
-    *   Exposes system health indicators, request count classifications, and RAG latencies on a `/metrics` target endpoint.
+</p>
 
 ---
 
-## 📁 Repository Structure
+## 📖 About
 
-```plaintext
+**KanonesKa** is a Hybrid Retrieval-Augmented Generation (Hybrid-RAG) platform that helps Indian citizens plan international travel by answering country-specific compliance questions including:
+
+- Visa regulations
+- Gold & customs limits
+- Duty-free allowances
+- Local laws
+- Safety advisories
+- Multi-leg flight planning
+
+Instead of relying on a single retrieval strategy, KanonesKa combines **Dense Retrieval (FAISS)** and **Sparse Retrieval (BM25)** using **Reciprocal Rank Fusion (RRF)** before reranking results with a **Cross Encoder**, producing grounded and explainable responses.
+
+The platform also includes a **stateful travel planning wizard** that computes optimal multi-leg flight routes from India's Top 100 cities using **Dijkstra's Shortest Path Algorithm**, while securely synchronizing itineraries through **Supabase PostgreSQL**.
+
+---
+
+# 🚀 Features
+
+### 🔍 Hybrid Retrieval
+
+- FAISS Dense Vector Search
+- BM25 Keyword Retrieval
+- Reciprocal Rank Fusion (RRF)
+- Cross-Encoder Reranking
+
+### 🤖 AI Pipeline
+
+- LangGraph Stateful Workflow
+- Groq Llama-3
+- Self-Correction Loops
+- Grounded Responses
+
+### ✈️ Travel Planner
+
+- Multi-Step Wizard
+- Dijkstra Flight Routing
+- Top 100 Indian Cities
+- Multiple Traveller Profiles
+
+### ☁️ Cloud
+
+- Supabase Authentication
+- PostgreSQL Database
+- Row-Level Security
+- Saved Travel History
+
+### 📊 Monitoring
+
+- Prometheus Metrics
+- Request Monitoring
+- Retrieval Latency
+
+---
+
+# 📸 Development Journey
+
+KanonesKa evolved through multiple iterations—from a simple travel assistant to a production-ready Hybrid-RAG platform.
+
+---
+
+### Screenshots
+
+<table align="center">
+<tr>
+<td align="center">
+<img src="Docs/Pics/Version1/img1.png" width="500">
+</td>
+
+<td align="center">
+<img src="Docs/Pics/Version1/img2.png" width="500">
+</td>
+</tr>
+
+<tr>
+<td colspan="2" align="center">
+<img src="Docs/Pics/Version1/img3.png" width="550">
+</td>
+</tr>
+</table>
+
+# 🚀 Version 1 — Foundation
+
+Version 1 established the core architecture of the platform.
+
+### Highlights
+
+- Glassmorphic React UI
+- Stateful Wizard
+- Dijkstra Flight Routing
+- Initial Groq Integration
+- Basic RAG Responses
+
+### Wizard Flow
+
+```text
+Origin
+   ↓
+Destination
+   ↓
+Traveller Profile
+   ↓
+Trip Duration
+   ↓
+Generate Itinerary
+```
+
+---
+
+### Screenshots
+
+<table align="center">
+<tr>
+<td align="center">
+<img src="Docs/Pics/Version2/img4.png" width="500">
+</td>
+
+<td align="center">
+<img src="Docs/Pics/Version2/img5.png" width="500">
+</td>
+</tr>
+
+<tr>
+<td colspan="2" align="center">
+<img src="Docs/Pics/Version2/img6.png" width="550">
+</td>
+</tr>
+</table>
+
+
+# 🚀 Version 2 — Production Hybrid-RAG
+
+Version 2 transformed KanonesKa into a production-ready AI platform with explainable retrieval, secure authentication, and cloud persistence.
+
+### Highlights
+
+- 🔐 Supabase Authentication
+- 🔍 Visual Hybrid-RAG Inspector
+- ☁️ Cloud Saved Trips
+- 🧠 LangGraph Self-Correction
+- 📊 Retrieval Transparency
+
+### New Features
+
+#### 🔐 Authentication
+
+- Login & Registration
+- Supabase Auth
+- Animated Landing Page
+
+#### 🔍 Visual RAG Inspector
+
+Inspect exactly how an answer was generated by viewing:
+
+- FAISS similarity scores
+- BM25 keyword scores
+- Retrieved documents
+- Final reranked context
+
+#### ☁️ Cloud Sync
+
+Travel plans can be:
+
+- Saved
+- Retrieved
+- Deleted
+
+using **Supabase PostgreSQL** protected with **Row-Level Security (RLS).**
+
+#### 🧠 LangGraph Workflow
+
+```text
+User Query
+     │
+     ▼
+Hybrid Retrieval
+     │
+     ▼
+Document Grading
+     │
+     ▼
+Hallucination Check
+     │
+     ▼
+Answer Rewrite
+     │
+     ▼
+Grounded Response
+```
+
+
+---
+
+# 🧠 Hybrid-RAG Architecture
+
+```text
+                 User Query
+                      │
+                      ▼
+              Query Embedding
+                      │
+        ┌─────────────┴─────────────┐
+        ▼                           ▼
+  Dense Retrieval              Sparse Retrieval
+      (FAISS)                      (BM25)
+        │                           │
+        └─────────────┬─────────────┘
+                      ▼
+        Reciprocal Rank Fusion (RRF)
+                      │
+                      ▼
+         Cross Encoder Re-ranking
+                      │
+                      ▼
+            LangGraph Workflow
+                      │
+                      ▼
+                Groq Llama-3
+                      │
+                      ▼
+               Final Response
+```
+
+---
+
+# 🛠 Tech Stack
+
+| Category | Technologies |
+|-----------|--------------|
+| Backend | FastAPI, LangGraph |
+| Frontend | React, JavaScript, CSS |
+| AI | Groq, Llama-3 |
+| ML | PyTorch, Transformers |
+| Retrieval | FAISS, BM25, RRF |
+| Database | PostgreSQL (Supabase) |
+| Authentication | Supabase Auth |
+| Monitoring | Prometheus |
+
+---
+
+# 📁 Repository Structure
+
+```text
 KanonesKa/
 ├── api/
-│   └── app.py               # FastAPI backend endpoints (/ask, /plan, /metrics)
+│   └── app.py
+│
 ├── src/
-│   ├── hybrid_retriever.py  # BM25 + FAISS flat index search with RRF & Rerankers
-│   ├── flight_router.py     # Dijkstra pathfinder for India's top 100 cities
-│   ├── generator.py         # Stateful LangGraph RAG workflow & Groq bindings
-│   ├── semantic_cache.py    # L1 (Memory) / L2 (Redis) vector similarity caching
-│   └── unsplash_helper.py   # Destination cover photo scraper
+│   ├── hybrid_retriever.py
+│   ├── flight_router.py
+│   ├── generator.py
+│   ├── semantic_cache.py
+│   └── unsplash_helper.py
+│
 ├── frontend_react/
 │   ├── src/
-│   │   ├── App.jsx          # React wizard client, auth screens, modal triggers
-│   │   ├── App.css          # Glassmorphic layout styling
-│   │   └── supabaseClient.js# Supabase JS SDK client initializations
-│   └── package.json
+│   ├── package.json
+│   └── App.jsx
+│
 ├── Docs/
-│   ├── doc2.md              # Phase 2 documentation (PyTorch vector caches)
-│   ├── doc3.md              # Phase 3 documentation (Wizard routing systems)
-│   ├── doc4.md              # Phase 4 documentation (Grounded RAG integrations)
-│   └── final_research_documentation.md # Academic-grade consolidated summary
-├── requirements.txt         # Python dependencies
+│   ├── Pics/
+│   │   ├── Version1/
+│   │   └── Version2/
+│   ├── doc2.md
+│   ├── doc3.md
+│   ├── doc4.md
+│   └── final_research_documentation.md
+│
+├── requirements.txt
 └── README.md
 ```
 
+
+# ⚙️ Installation
+
+## Prerequisites
+
+- Python **3.11+**
+- Node.js **18+**
+- Git
+- Groq API Key
+- (Optional) Supabase Project
+- (Optional) Unsplash API Key
+
 ---
 
-## ⚙️ Installation & Setup
+## Clone Repository
 
-### 1. Prerequisites
-*   Python 3.11+
-*   Node.js 18+ (for building React frontend)
-
-### 2. Python Environment Setup
 ```bash
-# Clone the repository
 git clone https://github.com/Mandy1200/KanonesKa.git
+
 cd KanonesKa
+```
 
-# Create virtual environment and activate
-python -m venv .venv
+---
+
+## Create Virtual Environment
+
+### macOS / Linux
+
+```bash
+python3 -m venv .venv
+
 source .venv/bin/activate
+```
 
-# Install requirements
+### Windows
+
+```powershell
+python -m venv .venv
+
+.venv\Scripts\Activate.ps1
+```
+
+---
+
+## Install Dependencies
+
+```bash
 pip install -r requirements.txt
 ```
 
-### 3. Frontend Client Setup
+---
+
+## Frontend Setup
+
 ```bash
 cd frontend_react
+
 npm install
+
 npm run build
+
 cd ..
 ```
 
 ---
 
-## 🔑 Environment Configuration
+# 🔑 Environment Variables
 
-Create a secure `.env` file at the repository root:
+Create a `.env` file in the project root.
 
 ```env
-GROQ_API_KEY=your_groq_api_key_here
-UNSPLASH_ACCESS_KEY=your_unsplash_access_key_here
+GROQ_API_KEY=your_groq_api_key
+
+UNSPLASH_ACCESS_KEY=your_unsplash_key
+
+SUPABASE_URL=your_supabase_url
+
+SUPABASE_ANON_KEY=your_supabase_anon_key
 ```
 
 ---
 
-## 🛢️ Supabase Database Configurations
+# ▶️ Run the Application
 
-Run the following SQL commands in your **[Supabase SQL Editor](https://supabase.com/dashboard/project/kwozfcivubtkjzcezlum/sql)** to initialize the RLS-secured schema:
+Start the FastAPI server:
 
-```sql
-create table public.saved_trips (
-    id uuid default gen_random_uuid() primary key,
-    user_id uuid references auth.users(id) on delete cascade not null,
-    origin text not null,
-    destination text not null,
-    profile text not null,
-    days integer not null,
-    itinerary text not null,
-    photo_url text not null,
-    flight_route jsonb not null,
-    created_at timestamp with time zone default timezone('utc'::text, now()) not null
-);
-
-alter table public.saved_trips enable row level security;
-
-create policy "Users can insert their own trips" on public.saved_trips for insert with check (auth.uid() = user_id);
-create policy "Users can view their own trips" on public.saved_trips for select using (auth.uid() = user_id);
-create policy "Users can delete their own trips" on public.saved_trips for delete using (auth.uid() = user_id);
-```
-
----
-
-## 🏃 Running the Application
-
-### 1. Start the API Server
-Start the Uvicorn FastAPI server from the repository root:
 ```bash
 uvicorn api.app:app --host 0.0.0.0 --port 8000 --reload
 ```
 
-### 2. Access the Application Dashboard
-Open your browser and navigate to:
-👉 **[http://localhost:8000/gui](http://localhost:8000/gui)**
+Open:
+
+```
+http://localhost:8000/gui
+```
+
+---
+
+# 🌐 API Endpoints
+
+| Endpoint | Method | Description |
+|-----------|--------|-------------|
+| `/ask` | POST | Hybrid-RAG Assistant |
+| `/plan` | POST | Flight Planner |
+| `/metrics` | GET | Prometheus Metrics |
+| `/gui` | GET | Web Interface |
+
+---
+
+# 📂 Documentation
+
+Detailed implementation is available in the `Docs/` folder.
+
+| File | Description |
+|------|-------------|
+| `doc2.md` | Hybrid Retrieval |
+| `doc3.md` | Flight Routing |
+| `doc4.md` | LangGraph Workflow |
+| `final_research_documentation.md` | Complete Project Documentation |
+
+---
+
+# 🤝 Contributing
+
+Contributions are welcome.
+
+```bash
+# Fork
+
+git checkout -b feature/new-feature
+
+git commit -m "Add new feature"
+
+git push origin feature/new-feature
+```
+
+Open a Pull Request.
+
+---
+
+# 🙏 Acknowledgements
+
+Built using:
+
+- FastAPI
+- React
+- PyTorch
+- LangGraph
+- FAISS
+- BM25
+- Hugging Face Transformers
+- Groq
+- Supabase
+- Prometheus
+
+---
+
+# ⭐ Support
+
+If you found this project useful, consider giving it a ⭐ on GitHub.
+
+---
+
+<p align="center">
+
+**Made with ❤️ using FastAPI, React, LangGraph, FAISS, BM25, PyTorch, Groq and Supabase**
+
+</p>
+
+---
